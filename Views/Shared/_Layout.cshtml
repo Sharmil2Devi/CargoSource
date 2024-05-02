@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")*@
+        @Scripts.Render("~/bundles/modernizr")*@
 
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -21,7 +21,8 @@
     <!-- Bootstrap CSS
         ============================================ -->
     <link rel="stylesheet" href="~/assets/Login/css/bootstrap.min.css">
-
+    @Scripts.Render("~/Scripts/jquery.min.js")
+    @Scripts.Render("~/CustomScripts/ready.js?t=" + @DateTime.Now.Ticks.ToString())
     <!-- font awesome CSS
         ============================================ -->
     <link rel="stylesheet" href="~/assets/Login/css/font-awesome.min.css">
@@ -64,6 +65,44 @@
     <!-- modernizr JS
         ============================================ -->
     <script src="~/assets/Login/js/vendor/modernizr-2.8.3.min.js"></script>
+    <style>
+        /*Custom style start here*/
+        .dt-buttons img {
+            width: 25px;
+        }
+
+        .dt-buttons {
+            float: right;
+            /*top: 96%;*/
+            left: 82%;
+            top: -2%;
+            /*margin-top: -5px;*/
+        }
+
+        button.dt-button {
+            background-color: transparent !important;
+            border: none !important;
+        }
+
+        .fa-pen, .fa-list, .fa-info-circle, .fa-pencil, .fa-paper-plane, .fa-folder-open, .fa-save {
+            font-size: 18px;
+            color: #00c292;
+            margin-right: 20px;
+           float: right;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .modal-large .modal-header {
+            padding-bottom: 5px !important;
+        }
+
+        em {
+            color: red;
+        }
+       
+        /*Custom style end here*/
+    </style>
 </head>
 <body>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
@@ -383,7 +422,7 @@
                                     <li>
                                         <a data-toggle="collapse" data-target="#Charts" href="#">Home</a>
                                         <ul class="collapse dropdown-header-top">
-                                            <li><a href="index.html">Dashboard One</a></li>
+                                            <li class="SubMenu"><a href="index.html">Dashboard One</a></li>
                                             <li><a href="index-2.html">Dashboard Two</a></li>
                                             <li><a href="index-3.html">Dashboard Three</a></li>
                                             <li><a href="index-4.html">Dashboard Four</a></li>
@@ -506,13 +545,13 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                            <li>
-                                <a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Home</a>
+                            <li class="Master">
+                                <a data-toggle="tab" href="#Master" class="Master"><i class="notika-icon notika-support"></i> Masters</a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#mailbox"><i class="notika-icon notika-mail"></i> Email</a>
+                                <a data-toggle="tab" href="#Import"><i class="notika-icon notika-mail"></i> Import</a>
                             </li>
-                            <li>
+                            @*<li>
                                 <a data-toggle="tab" href="#Interface"><i class="notika-icon notika-edit"></i> Interface</a>
                             </li>
                             <li>
@@ -529,9 +568,29 @@
                             </li>
                             <li>
                                 <a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> Pages</a>
-                            </li>
+                            </li>*@
                         </ul>
                         <div class="tab-content custom-menu-content">
+                            <div id="Master" class="tab-pane in notika-tab-menu-bg animated flipInX">
+                                <ul class="notika-main-menu-dropdown">
+                                    <li>
+                                        <a href="@Url.Action("ClientMaster","Admin")" class="SubMenuMaster">Client</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("ConsigneeMaster","Admin")" class="SubMenuMaster">Consignee</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("PackageMaster","Admin")" class="SubMenuMaster">Package</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("CFSMaster","Admin")" class="SubMenuMaster">CFS</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("VesselMaster","Admin")" class="SubMenuMaster">Vessel</a>
+                                    </li>
+
+                                </ul>
+                            </div>
                             <div id="Home" class="tab-pane in notika-tab-menu-bg animated flipInX">
                                 <ul class="notika-main-menu-dropdown">
                                     <li>
@@ -554,16 +613,25 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div id="mailbox" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <div id="Import" class="tab-pane notika-tab-menu-bg animated flipInX">
                                 <ul class="notika-main-menu-dropdown">
                                     <li>
-                                        <a href="inbox.html">Inbox</a>
+                                        <a href="inbox.html">D/S Report</a>
                                     </li>
                                     <li>
-                                        <a href="view-email.html">View Email</a>
+                                        <a href="view-email.html">DS Quotations</a>
                                     </li>
                                     <li>
-                                        <a href="compose-email.html">Compose Email</a>
+                                        <a href="compose-email.html">Misc Quotations</a>
+                                    </li>
+                                    <li>
+                                        <a href="compose-email.html">D/S Invoice</a>
+                                    </li>
+                                    <li>
+                                        <a href="compose-email.html">HBL Invoice</a>
+                                    </li>
+                                    <li>
+                                        <a href="compose-email.html">Misc Invoice</a>
                                     </li>
                                 </ul>
                             </div>
@@ -724,7 +792,7 @@
             @RenderBody()
         </div>
 
-        <hr />
+        @*<hr />*@
         <div class="footer-copyright-area">
             <div class="container">
                 <div class="row">
@@ -742,7 +810,7 @@
     </div>
 
     @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")*@
+        @Scripts.Render("~/bundles/bootstrap")*@
     <!-- jquery
         ============================================ -->
     <script src="~/assets/Login/js/vendor/jquery-1.12.4.min.js"></script>
@@ -802,13 +870,31 @@
     <!-- Data Table JS
         ============================================ -->
     <script src="~/assets/Login/js/data-table/jquery.dataTables.min.js"></script>
-    <script src="~/assets/Login/js/data-table/data-table-act.js"></script>
+    @*<script src="~/assets/Login/js/data-table/data-table-act.js"></script>*@
+    @*@Styles.Render("~/CustomScripts/css/jquery.dataTables.css?t=" + @DateTime.Now.Ticks.ToString())*@
+    @Scripts.Render("~/Scripts/bootbox.min.js?t=" + @DateTime.Now.Ticks.ToString())
+    @Scripts.Render("~/Scripts/jquery.bootstrap-growl.min.js?t=" + @DateTime.Now.Ticks.ToString())
+    @Styles.Render("~/CustomScripts/resources/syntax/shCore.css?t=" + @DateTime.Now.Ticks.ToString())
+    @Scripts.Render("~/CustomScripts/js/jquery.dataTables.js?t=" + @DateTime.Now.Ticks.ToString())
+    @Scripts.Render("~/CustomScripts/js/dataTables.fixedColumns.js?t=" + @DateTime.Now.Ticks.ToString())
+    @Scripts.Render("~/CustomScripts/Export/dataTables.buttons.min.js?t=" + @DateTime.Now.Ticks.ToString())
+    @Scripts.Render("~/CustomScripts/Export/jszip.min.js?t=" + @DateTime.Now.Ticks.ToString())
+    @Scripts.Render("~/CustomScripts/Export/pdfmake.min.js?t=" + @DateTime.Now.Ticks.ToString())
+    @Scripts.Render("~/CustomScripts/Export/vfs_fonts.js?t=" + @DateTime.Now.Ticks.ToString())
+    @Scripts.Render("~/CustomScripts/Export/buttons.html5.min.js?t=" + @DateTime.Now.Ticks.ToString())
+
     <!-- main JS
         ============================================ -->
     <script src="~/assets/Login/js/main.js"></script>
     <!-- tawk chat JS
         ============================================ -->
-    <script src="~/assets/Login/js/tawk-chat.js"></script>
+    @*<script src="~/assets/Login/js/tawk-chat.js"></script>*@
     @RenderSection("scripts", required: false)
+    <script>
+            //$(".SubMenuMaster").click(function () {
+            //    alert('yes');
+            //});
+    </script>
+
 </body>
 </html>
